@@ -1,0 +1,83 @@
+﻿@model IEnumerable<RegisterEmployee_01.Models.Employee>
+
+@{
+    ViewBag.Title = "DisplayEmployee";
+}
+
+<h2>Display Employee Records</h2>
+
+
+<table id="employeeTable" class="display">
+
+    <thead>
+
+        <tr>
+            <th>Employee ID</th>
+            <th>Employee Name</th>
+            <th>Email Address</th>
+            <th>Address</th>
+            <th>Mobile</th>
+            <th>Department</th>
+        </tr>
+
+    </thead>
+
+    <tfoot>
+
+        <tr>
+            <th>Employee ID</th>
+            <th>Employee Name</th>
+            <th>Email Address</th>
+            <th>Address</th>
+            <th>Mobile</th>
+            <th>Department</th>
+        </tr>
+
+    </tfoot>
+</table>
+
+<link href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet" />
+
+@section scripts{
+
+<script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+
+
+    <script>
+
+        $(document).ready(function () {
+
+            $("#employeeTable").DataTable({
+
+                "ajax": {
+
+                    "url": "/Employee/GetList",
+                    "type": "GET",
+                    datatype: "json"
+                },
+
+                "columns": [
+
+                    { "data": "EmpID" },
+                    { "data": "EmpFullName" },
+                    { "data": "EmailAddress" },
+                    { "data": "Address" },
+                    { "data": "Mobile" },
+                    { "data": "Department" }
+                    
+                ]
+
+
+            })
+
+        });
+    </script>
+
+}
+
+<div>
+    @Html.ActionLink("Back ", "Index")
+</div>
+
+
+

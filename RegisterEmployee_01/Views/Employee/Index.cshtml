@@ -1,0 +1,137 @@
+﻿@model IEnumerable<RegisterEmployee_01.Models.Employee>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*<h2>Employee Database Records</h2>*@
+
+<p>
+    @Html.ActionLink("Add Employee", "Create")
+</p>
+
+<p>
+    @Html.ActionLink("View Records", "DisplayEmployee")
+</p>
+
+@*<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.EmpFullName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmailAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Mobile)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Department)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmpFullName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmailAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Mobile)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Department)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.EmpID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.EmpID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.EmpID })
+        </td>
+    </tr>
+}
+
+</table>*@
+
+@Styles.Render("~/Content/dataTables")
+
+
+<h3>Employee Records From The Database</h3>
+
+<table id="table_id" class="table table table-striped table-hover">
+
+
+    <thead>
+
+        <tr>
+
+            <th>Employee ID</th>
+
+            <th>Full Name</th>
+
+            <th>EMail Address</th>
+
+            <th>Address</th>
+
+            <th>Mobile</th>
+
+            <th>Department</th>
+
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach(var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.EmpID)</td>
+
+                <td>@Html.DisplayFor(modelItem =>item.EmpFullName)</td>
+
+                <td>@Html.DisplayFor(modelItem => item.EmailAddress)</td>
+
+                <td>@Html.DisplayFor(modelItem => item.Address)</td>
+
+                <td>@Html.DisplayFor(modelItem => item.Mobile)</td>
+
+                <td>@Html.DisplayFor(modelItem => item.Department)</td>
+
+                <td>
+                    @Html.ActionLink("Update", "Edit", new { id = item.EmpID }) |
+                    @Html.ActionLink("View", "Details", new { id = item.EmpID }) |
+                    @Html.ActionLink("Remove", "Delete", new { id = item.EmpID })
+                </td>
+            </tr>
+            
+        }
+    </tbody>
+</table>
+
+@*<link href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet" />*@
+
+@section scripts {
+
+
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+        Scripts.Render("~/bundles/dataTables")
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $('#table_id').DataTable();
+
+    });
+
+</script>
+
+}
